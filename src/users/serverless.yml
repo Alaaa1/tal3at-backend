@@ -4,7 +4,6 @@ createUser:
     - Effect: Allow
       Action:
         - dynamodb:PutItem
-        - sqs:SendMessage
         - sns:Publish
       Resource:
         - Fn::GetAtt:
@@ -18,6 +17,8 @@ createUser:
       Ref: MyAppDatabase
     SNS_ARN:
       Ref: MySNSTopic
+    ClientPool_ID:
+      Ref: myUserPoolClient
   events:
     - http:
         method: post

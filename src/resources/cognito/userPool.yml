@@ -1,6 +1,17 @@
 Resources:
   myUsersPool:
     Type: AWS::Cognito::UserPool
+    # Properties:
+    #   Schema:
+    #     - AttributeDataType: String
+    #       Name: email
+    #       Required: true
+    #     - AttributeDataType: String
+    #       Name: name
+    #       Required: true
+    #     - AttributeDataType: String
+    #       Name: password
+    #       Required: true
 
 
   myUserPoolClient:
@@ -11,7 +22,7 @@ Resources:
       UserPoolId: 
         Ref: myUsersPool
 
-        
+
   myAuthorizer:
     Type: AWS::ApiGateway::Authorizer
     Properties:
