@@ -11,6 +11,8 @@ Resources:
           - emailQueue
           - Arn
       Protocol: sqs
+
+      
   slackSubscription:
     Type: AWS::SNS::Subscription
     Properties:

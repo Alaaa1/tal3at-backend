@@ -1,0 +1,26 @@
+Resources:
+  myUsersPool:
+    Type: AWS::Cognito::UserPool
+
+
+  myUserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: myUserPoolClient
+      GenerateSecret: false
+      UserPoolId: 
+        Ref: myUsersPool
+
+        
+  myAuthorizer:
+    Type: AWS::ApiGateway::Authorizer
+    Properties:
+      Type: COGNITO_USER_POOLS
+      IdentitySource: method.request.header.Authorization
+      Name: userAuthorizer
+      ProviderARNs: 
+        - Fn::GetAtt:
+          - myUsersPool
+          - Arn
+      RestApiId: 
+        Ref: ApiGatewayRestApi

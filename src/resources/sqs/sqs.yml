@@ -4,6 +4,8 @@ Resources:
     Properties:
       QueueName: "emailQueue"
       VisibilityTimeout: 30
+
+      
   slackQueue:
     Type: AWS::SQS::Queue
     Properties:
