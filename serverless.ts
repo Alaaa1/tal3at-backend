@@ -4,7 +4,7 @@ import f from './functions';
 import r from './resources';
 
 module.exports = serverless({
-  service: 'calo-serverless-starter',
+  service: 'tal3at-backend',
   provider: {
     architecture: 'x86_64',
     timeout: 29,

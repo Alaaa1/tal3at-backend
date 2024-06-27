@@ -12,6 +12,8 @@ export default middyfy(async () => {
 
     const response = await docClient.send(command);
 
+    console.log({response})
+
     return {
         statusCode: 200,
         body: JSON.stringify(response.Items)

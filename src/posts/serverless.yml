@@ -1,0 +1,17 @@
+getPosts:
+  handler: src/posts/getPosts/handler.default
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+      Resource:
+        Fn::GetAtt:
+          - Tal3atTable
+          - Arn
+  environment:
+    TABLE_NAME:
+      Ref:  Tal3atTable
+  events:
+    - http:
+        method: get
+        path: /v1/posts
