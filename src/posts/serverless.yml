@@ -15,3 +15,22 @@ getPosts:
     - http:
         method: get
         path: /v1/posts
+
+likePost:
+  handler: src/posts/likePost/handler.default
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:UpdateItem
+      Resource:
+        Fn::GetAtt:
+          - Tal3atTable
+          - Arn
+  environment:
+    TABLE_NAME:
+      Ref:  Tal3atTable
+  events:
+    - http:
+        method: post
+        path: /v1/posts/{postId}
