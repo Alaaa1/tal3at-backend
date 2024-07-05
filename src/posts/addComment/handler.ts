@@ -11,7 +11,7 @@ const docClient = DynamoDBDocumentClient.from(client);
 
 export default middyfy(async (event) => {
   const { postId } = event.pathParameters;
-  const { commentText } = event.body;
+  const { commentText } = JSON.parse(event.body);
 
   console.log({ commentText });
 
