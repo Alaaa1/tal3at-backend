@@ -10,7 +10,7 @@ getPosts:
           - Arn
   environment:
     TABLE_NAME:
-      Ref:  Tal3atTable
+      Ref: Tal3atTable
   events:
     - http:
         method: get
@@ -29,7 +29,7 @@ likePost:
           - Arn
   environment:
     TABLE_NAME:
-      Ref:  Tal3atTable
+      Ref: Tal3atTable
   events:
     - http:
         method: post
@@ -48,8 +48,26 @@ addComment:
           - Arn
   environment:
     TABLE_NAME:
-      Ref:  Tal3atTable
+      Ref: Tal3atTable
   events:
     - http:
         method: post
         path: /v1/posts/{postId}/comments
+
+createPost:
+  handler: src/posts/create/handler.default
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        Fn::GetAtt:
+          - Tal3atTable
+          - Arn
+  environment:
+    TABLE_NAME:
+      Ref: Tal3atTable
+  events:
+    - http:
+        method: post
+        path: /v1/posts
